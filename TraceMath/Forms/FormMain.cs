@@ -838,10 +838,26 @@ namespace TraceMath
                     err = Program.vna.app.SCPI.TRIGger.SEQuence.SINGle;
 
                     // retrieve unformatted data for trace A
-                    double[] dataTraceA = Program.vna.app.SCPI.CALCulate[selectedChannel].Trace[selectedTraceA].DATA.FDATa;
+                    double[] dataTraceA;
+                    if (Program.vna.app.SCPI.DISPlay.WINDow[selectedChannel].TRACe[selectedTraceA].MEMory.STATe == true)
+                    {
+                        dataTraceA = Program.vna.app.SCPI.CALCulate(selectedChannel).Trace(selectedTraceA).DATA.FMEMory;
+                    }
+                    else
+                    {
+                        dataTraceA = Program.vna.app.SCPI.CALCulate[selectedChannel].Trace[selectedTraceA].DATA.FDATa;
+                    }
 
                     // retrieve unformatted data for trace B
-                    double[] dataTraceB = Program.vna.app.SCPI.CALCulate[selectedChannel].Trace[selectedTraceB].DATA.FDATa;
+                    double[] dataTraceB;
+                    if (Program.vna.app.SCPI.DISPlay.WINDow[selectedChannel].TRACe[selectedTraceB].MEMory.STATe == true)
+                    {
+                        dataTraceB = Program.vna.app.SCPI.CALCulate(selectedChannel).Trace(selectedTraceB).DATA.FMEMory;
+                    }
+                    else
+                    {
+                        dataTraceB = Program.vna.app.SCPI.CALCulate[selectedChannel].Trace[selectedTraceB].DATA.FDATa;
+                    }
 
                     // ------------------------------------------------------------------------------------------------
 
